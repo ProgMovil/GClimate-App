@@ -1,17 +1,17 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
-import {Contanier} from "native-base";
+import {Container} from "native-base";
 const ScrPrincipal=()=>{
   return( 
-    <Contanier>
+    <Container>
         <Text>Cualquiera</Text>
-    </Contanier>
+    </Container>
 
   );
 }; //Termina ScrPrincipal
 
 const styles = StyleSheet.create({
-Contanier:{
+Container:{
     flex:1,
     backgroundColor: "#000000 ",
     justifyContent: "center",
