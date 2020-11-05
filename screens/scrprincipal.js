@@ -1,10 +1,17 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
-import {Container} from "native-base";
+import {
+    Container,
+    Header
+
+
+} from "native-base";
 const ScrPrincipal=()=>{
   return( 
-    <Container>
-        <Text>Cualquiera</Text>
+    <Container style={styles.Container}>
+        <Header>
+        <Text style={styles.Text}>Cualquiera</Text>
+        </Header>
     </Container>
 
   );
@@ -13,8 +20,8 @@ const ScrPrincipal=()=>{
 const styles = StyleSheet.create({
 Container:{
     flex:1,
-    backgroundColor: "#000000 ",
-    justifyContent: "center",
+    backgroundColor:"#000",
+    
 },
 Text:{
     color:"#fff",
