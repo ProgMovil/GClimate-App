@@ -1,16 +1,30 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, Dimensions } from "react-native";
 import {
     Container,
-    Header
+    Header,
+    Item,
+    Input,
+    Icon,
+    searchBar
 
 
 } from "native-base";
+//
+const { width, height } = Dimensions.get("window");
+//PantallaPrincipal
 const ScrPrincipal=()=>{
   return( 
     <Container style={styles.Container}>
-        <Header>
-        <Text style={styles.Text}>Cualquiera</Text>
+        <Header searchBar rounded style={styles.header} >
+            <Item style={styles.addc}> 
+             <Icon name="add-circle"/>
+         </Item>
+         <Item style={styles.buscar}>
+             
+             <Input placeholder="Buscar"/>
+             <Icon name="search" />
+         </Item>
         </Header>
     </Container>
 
@@ -25,6 +39,23 @@ Container:{
 },
 Text:{
     color:"#fff",
+},
+header:{
+    backgroundColor:"#000",
+
+},
+buscar:{
+    
+    width:15,
+    borderRadius:50,
+    backgroundColor:"#000",
+    
+},
+
+
+addc:{
+    maxWidth:width*0.11,
+   backgroundColor:"#000",
 },
 
 });
