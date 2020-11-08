@@ -27,7 +27,7 @@ const ScrPrincipal=({navigation})=>{
     //Variables
     const[clima,setclima]=useState(null);
     const [error, setError] = useState(false);
-    const [search, setSearch] = useState("");
+    const [search,setSearch]=useState("");
     const [searchError, setSearchError] = useState(false);
     
 
@@ -57,7 +57,7 @@ const ScrPrincipal=({navigation})=>{
           setSearchError(true);
         else
         {
-          navigation.navigate("busqueda", {search})
+          navigation.navigate("busqueda", { search })
           setSearchError(false);
         }
       }
@@ -65,13 +65,12 @@ const ScrPrincipal=({navigation})=>{
     useEffect(()=>{
         getclima();
     },[]);
+    
     //Busqueda Error
     useEffect(() => {
         if (search) setSearchError(false);
       }, [search]);
 
-    
-    
 
     if (!clima) {
         return (
@@ -88,8 +87,8 @@ const ScrPrincipal=({navigation})=>{
              <Icon name="add-circle"/>
             </Item>
          <Item style={styles.buscar}>
-             <Input placeholder="Buscar"  value={search} onChangeText={setSearch} style={searchError ? styles.inputError : null} style={{color:"#fff"}} placeholderTextColor="#fff"/>
-             <Button icon onPress={handlerSearch} style={{backgroundColor:"#000"}}>
+             <Input placeholder="Buscar"   value={search} onChangeText={setSearch} style={searchError ? styles.inputError : null} style={{color:"#fff"}} placeholderTextColor="#fff"/>
+             <Button icon onPress={() => navigation.navigate("busqueda",{ search })} style={{backgroundColor:"#000"}}>
                 <Icon name="search" color='#fff'/>
              </Button>
          </Item>
@@ -131,11 +130,11 @@ const styles = StyleSheet.create({
         backgroundColor:"#000",
     },
     Content:{
-        backgroundColor:"#fff", 
+        backgroundColor:"#000", 
         height:height*0.25    
     },
     h1:{
-        color:"#000",
+        color:"#fff",
         textAlign:"center",
     },
 

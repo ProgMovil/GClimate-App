@@ -22,11 +22,10 @@ const {apiKey,apiHost}= getEnvVars();
 
 const { width, height } = Dimensions.get("window");
 
-const ScrBusqueda=({route,navigation})=>{
-    const {nombre}=route.params
+const ScrBusqueda=({ route , navigation })=>{
+    const {nombre}=route.params;
     return(
-        <Text>{nombre}</Text>
-
+    <Text>{nombre}</Text>
     )
 }
 
