@@ -28,7 +28,6 @@ const ScrPrincipal=({navigation})=>{
     const[clima,setclima]=useState(null);
     const [error, setError] = useState(false);
     const [search,setSearch]=useState("");
-    const [searchError, setSearchError] = useState(false);
     
 
     //Gets
@@ -44,7 +43,7 @@ const ScrPrincipal=({navigation})=>{
                     }
             });
             setclima(response.data);
-            console.log(clima);
+            
         }
         catch(error)
         {
@@ -52,24 +51,14 @@ const ScrPrincipal=({navigation})=>{
         }
     }
     //Busqueda Clima
-    const handlerSearch = () => {
-        if (!search)
-          setSearchError(true);
-        else
-        {
-          navigation.navigate("busqueda", { search })
-          setSearchError(false);
-        }
-      }
+    
     //Clima obtener
     useEffect(()=>{
         getclima();
     },[]);
     
     //Busqueda Error
-    useEffect(() => {
-        if (search) setSearchError(false);
-      }, [search]);
+    
 
 
     if (!clima) {
@@ -87,19 +76,19 @@ const ScrPrincipal=({navigation})=>{
              <Icon name="add-circle"/>
             </Item>
          <Item style={styles.buscar}>
-             <Input placeholder="Buscar"   value={search} onChangeText={setSearch} style={searchError ? styles.inputError : null} style={{color:"#fff"}} placeholderTextColor="#fff"/>
-             <Button icon onPress={() => navigation.navigate("busqueda",{ search })} style={{backgroundColor:"#000"}}>
+             <Input placeholder="Buscar"  value={search} onChangeText={setSearch}  style={{color:"#fff"}} placeholderTextColor="#fff"/>
+             <Button icon onPress={() => search?navigation.navigate('busqueda', {search}):alert("Ingrese una Ciudad")} style={{backgroundColor:"#000"}}>
                 <Icon name="search" color='#fff'/>
              </Button>
          </Item>
         </Header>
         <Content style={styles.Content} >
-                <H1 style={styles.h1}> {clima.location.name}</H1>
-        </Content>
-        <View style={styles.Content2} >
-            <H2>Clima Actual</H2>
+            <H1 style={styles.h1}> {clima.location.name}</H1>
+            <View>
+            <H2 style={{backgroundColor:"#232425",color:"#fff",textAlign:"center",height:height*0.09}}>Clima Actual</H2>
             <Text>Clima {clima.current.temp_c}</Text>
         </View>
+        </Content>
     </Container>
 
   );
@@ -130,11 +119,10 @@ const styles = StyleSheet.create({
         backgroundColor:"#000",
     },
     Content:{
-        backgroundColor:"#000", 
-        height:height*0.25    
+        backgroundColor:"#fff",    
     },
     h1:{
-        color:"#fff",
+        color:"#000",
         textAlign:"center",
     },
 

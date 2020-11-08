@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import ScrPrincipal from './screens/ScrPrincipal';
 import ScrBusqueda from './screens/ScrBusqueda';
 import { roundToNearestPixel } from 'react-native/Libraries/Utilities/PixelRatio';
+import { Title } from 'native-base';
 
 
 const Stack = createStackNavigator();
@@ -15,7 +16,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Principal"  >
         <Stack.Screen name = "Principal" component={ScrPrincipal} options={{ headerShown: false }} />
-        <Stack.Screen name="busqueda" component={ScrBusqueda} options={({ route }) => ({ title: route.params })} options={{headerStyle:{backgroundColor:'#000'},headerTintColor: "#fff"}} />
+        <Stack.Screen name="busqueda" component={ScrBusqueda}  options={({ route }) => ({headerStyle:{backgroundColor:'#000'},title: route.params.search,headerTintColor: "#fff"})}  />
       </Stack.Navigator>
     </NavigationContainer>
 
@@ -23,9 +24,5 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  head: {
-
-    backgroundColor:"#000",
-    
-  },
+  
 });
