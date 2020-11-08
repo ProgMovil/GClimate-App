@@ -7,25 +7,29 @@ import {
     Input,
     Icon,
     Content,
-    Card,
     Spinner,
     H1,
-    Row,
     View,
-    H2
+    H2,
+    Button
 
 } from "native-base";
 import backend from "../api/backend";
 import getEnvVars from "../enviroment";
 
 const {apiKey,apiHost}= getEnvVars();
-//
+
 const { width, height } = Dimensions.get("window");
+
+
 //PantallaPrincipal
-const ScrPrincipal=()=>{
+const ScrPrincipal=({navigation})=>{
     //Variables
     const[clima,setclima]=useState(null);
     const [error, setError] = useState(false);
+    const [search, setSearch] = useState("");
+    const [searchError, setSearchError] = useState(false);
+    
 
     //Gets
     const getclima = async ()=>{
@@ -47,10 +51,27 @@ const ScrPrincipal=()=>{
             setError(true);
         }
     }
-
+    //Busqueda Clima
+    const handlerSearch = () => {
+        if (!search)
+          setSearchError(true);
+        else
+        {
+          navigation.navigate("busqueda", {search})
+          setSearchError(false);
+        }
+      }
+    //Clima obtener
     useEffect(()=>{
         getclima();
     },[]);
+    //Busqueda Error
+    useEffect(() => {
+        if (search) setSearchError(false);
+      }, [search]);
+
+    
+    
 
     if (!clima) {
         return (
@@ -59,6 +80,7 @@ const ScrPrincipal=()=>{
         </Content>
         )
     }
+
   return( 
     <Container style={styles.Container}>
         <Header searchBar rounded style={styles.header}  >
@@ -66,8 +88,10 @@ const ScrPrincipal=()=>{
              <Icon name="add-circle"/>
             </Item>
          <Item style={styles.buscar}>
-             <Input placeholder="Buscar"  placeholderTextColor="#fff" style={{color:"#fff"}}/>
-             <Icon name="search" color='#fff'/>
+             <Input placeholder="Buscar"  value={search} onChangeText={setSearch} style={searchError ? styles.inputError : null} style={{color:"#fff"}} placeholderTextColor="#fff"/>
+             <Button icon onPress={handlerSearch} style={{backgroundColor:"#000"}}>
+                <Icon name="search" color='#fff'/>
+             </Button>
          </Item>
         </Header>
         <Content style={styles.Content} >
