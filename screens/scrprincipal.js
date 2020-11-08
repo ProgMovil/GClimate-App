@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, Dimensions,FlatList } from "react-native";
+import { StyleSheet, Text, Dimensions,FlatList, Keyboard } from "react-native";
 import {
     Container,
     Header,
@@ -87,8 +87,8 @@ const ScrPrincipal=({navigation})=>{
         </Header>
         <Content style={styles.Content} >
 
-            <Card style={{height:height*0.2,backgroundColor:"#232425",justifyContent:"center",borderColor:"#000"}}>
-                <H1 style={styles.h1}> {clima.location.name}</H1>
+            <Card style={{height:height*0.25,backgroundColor:"#232425",justifyContent:"center",borderColor:"#000"}}>
+                <H1 style={styles.h1}> {clima.location.name},{clima.location.region}</H1>
                 <Text style={styles.h1}>{clima.current.condition.text}</Text>
             </Card>
 
@@ -101,7 +101,7 @@ const ScrPrincipal=({navigation})=>{
                 <H2 style={{color:"#fff"}}>{clima.current.temp_f}F</H2>
             </Card>
 
-            <View style={{flex:1,flexDirection:"row",flexWrap:"wrap",alignContent:"space-betweens",marginLeft:8,marginRight:10}}>
+            <View style={{flex:1,flexDirection:"row",alignContent:"space-between",marginLeft:8,marginRight:10}}>
                 <Card style={{flex:1,height:90,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
                     <H2 style={{color:"#fff"}}>Minima</H2>
                     <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.mintemp_c}C</H3>
@@ -112,7 +112,9 @@ const ScrPrincipal=({navigation})=>{
                     <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.maxtemp_c}C</H3>
                     <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.maxtemp_f}F</H3>
                 </Card>
-                <Card style={{flex:1,height:90,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
+            </View>
+            <View style={{flex:1,flexDirection:"row",alignContent:"space-between",marginLeft:8,marginRight:10}}>
+            <Card style={{flex:1,height:90,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
                     <H2 style={{color:"#fff"}}>Lluvia</H2>
                     <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].daily_chance_of_rain}%</H3>
                 </Card>
@@ -120,8 +122,8 @@ const ScrPrincipal=({navigation})=>{
                     <H2 style={{color:"#fff"}}>Humedad</H2>
                     <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.avghumidity}%</H3>
                 </Card>
-
             </View>
+
         </Content>
     </Container>
 
