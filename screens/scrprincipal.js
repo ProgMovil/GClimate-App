@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { StyleSheet, Text, Dimensions,FlatList, Keyboard } from "react-native";
 import {
     Container,
@@ -25,18 +25,27 @@ const { width, height } = Dimensions.get("window");
 
 
 //PantallaPrincipal
-const ScrPrincipal=({navigation})=>{
+const ScrPrincipal=({route,navigation})=>{
     //Variables
     const[clima,setclima]=useState(null);
     const [error, setError] = useState(false);
     const [search,setSearch]=useState("");
+    let city=null;
+    const inputref= useRef(null);
+    console.log(route.params);
     
+    if(!route.params){
+        city="Villanueva";
+    }else{
+        city=route.params.params.id;
+    }
 
     //Gets
     const getclima = async ()=>{
         try
         {
-            const response= await backend.get('/forecast.json?q=Villanueva&lang=es',{
+            
+            const response= await backend.get(`/forecast.json?q=${city}&lang=es`,{
                 headers:
                     {
                         "x-rapidapi-key":apiKey,
@@ -58,17 +67,20 @@ const ScrPrincipal=({navigation})=>{
     //Clima obtener
     useEffect(()=>{
         getclima();
-    },[]);
-    
+        
+    },[city]);
+    const erased = () => {
+        inputref.current.clear()
+      }
     //Busqueda Error
     
 
 
     if (!clima) {
         return (
-        <Content style={{backgroundColor:"#000"}}>
-            <Spinner color="#fff" />
-        </Content>
+            <View style={{flex:1,justifyContent:"center",backgroundColor:"#000"}}>
+             <Spinner color="#fff"  />
+            </View>
         )
     }
     //console.log(clima.forecast.forecastday[0].day.mintemp_c);
@@ -79,8 +91,8 @@ const ScrPrincipal=({navigation})=>{
              <Icon name="add-circle"/>
             </Item>
          <Item style={styles.buscar}>
-             <Input placeholder="Buscar"  value={search} onChangeText={setSearch}  style={{color:"#fff"}} placeholderTextColor="#fff"/>
-             <Button icon onPress={() => search?navigation.navigate('busqueda', {search}):alert("Ingrese una Ciudad")} style={{backgroundColor:"#232425",height:39,borderRadius:50}}>
+             <Input placeholder="Buscar" ref={inputref} value={search} onChangeText={setSearch}  style={{color:"#fff",marginLeft:15}} placeholderTextColor="#fff"/>
+             <Button icon onPress={() =>  search?(Keyboard.dismiss(),navigation.navigate('busqueda', {search})):alert("Ingrese una Ciudad")}  style={{backgroundColor:"#232425",height:39,borderRadius:50}}>
                 <Icon name="search" color='#fff'/>
              </Button>
          </Item>
@@ -116,7 +128,7 @@ const ScrPrincipal=({navigation})=>{
             <View style={{flex:1,flexDirection:"row",alignContent:"space-between",marginLeft:8,marginRight:10}}>
             <Card style={{flex:1,height:90,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
                     <H2 style={{color:"#fff"}}>Lluvia</H2>
-                    <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].daily_chance_of_rain}%</H3>
+                    <Text style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.daily_chance_of_rain}%</Text>
                 </Card>
                 <Card style={{flex:1,height:90,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
                     <H2 style={{color:"#fff"}}>Humedad</H2>
