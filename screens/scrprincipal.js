@@ -69,9 +69,7 @@ const ScrPrincipal=({route,navigation})=>{
         getclima();
         
     },[city]);
-    const erased = () => {
-        inputref.current.clear()
-      }
+  
     //Busqueda Error
     
 
@@ -92,7 +90,7 @@ const ScrPrincipal=({route,navigation})=>{
             </Item>
          <Item style={styles.buscar}>
              <Input placeholder="Buscar" ref={inputref} value={search} onChangeText={setSearch}  style={{color:"#fff",marginLeft:15}} placeholderTextColor="#fff"/>
-             <Button icon onPress={() =>  search?(Keyboard.dismiss(),navigation.navigate('busqueda', {search})):alert("Ingrese una Ciudad")}  style={{backgroundColor:"#232425",height:39,borderRadius:50}}>
+             <Button icon onPress={() =>  search?(Keyboard.dismiss(),navigation.navigate('busqueda', {search}),setSearch("")):alert("Ingrese una Ciudad")}  style={{backgroundColor:"#232425",height:39,borderRadius:50}}>
                 <Icon name="search" color='#fff'/>
              </Button>
          </Item>
