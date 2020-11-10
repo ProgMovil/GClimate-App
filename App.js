@@ -21,7 +21,6 @@ export default function App() {
         <Stack.Screen name="busqueda" component={ScrBusqueda}  options={({ route }) => ({headerStyle:{backgroundColor:'#000'},title: route.params.search,headerTintColor: "#fff"})}  />
         <Stack.Screen name="Info" component={ScrInfoexten} options={{ headerShown: false }} />
         <Stack.Screen name="horas" component={ScrClimahr}  options={({ route }) => ({headerStyle:{backgroundColor:'#000'},title: "Clima por Hora",headerTintColor: "#fff"})}  />
-        
       </Stack.Navigator>
     </NavigationContainer>
 

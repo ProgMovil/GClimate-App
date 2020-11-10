@@ -97,38 +97,38 @@ const ScrPrincipal=({route,navigation})=>{
         </Header>
         <Content style={styles.Content} >
 
-            <Card style={{height:height*0.25,backgroundColor:"#232425",justifyContent:"center",borderColor:"#000"}}>
+            <Card style={{height:height*0.25,backgroundColor:"#232425",justifyContent:"center",width:width+2,marginLeft:-1,borderColor:"#232425"}}>
                 <H1 style={styles.h1}> {clima.location.name},{clima.location.region}</H1>
                 <Text style={styles.h1}>{clima.current.condition.text}</Text>
             </Card>
 
-            <Card style={{height:height*0.1,backgroundColor:"#232425",justifyContent:"center",marginTop:10,borderLeftWidth:0,borderRightWidth:0, borderTopWidth:0.5,borderbottomWidth:0.5}}>
+            <Card style={{height:height*0.1,backgroundColor:"#232425",justifyContent:"center",marginTop:10,width:width+3,marginLeft:-1, borderTopWidth:0.5,borderbottomWidth:0.5}}>
                 <H2 style={{color:"#fff",textAlign:"center"}}>Clima Actual</H2>
             </Card>
 
             <Card style={{flex:1, flexDirection:"row",height:height*0.1,width:width*0.94,backgroundColor:"#232425",justifyContent:"space-around",alignItems:"center",margin:10,marginLeft:10}}>
-                <H2 style={{color:"#fff"}}>{clima.current.temp_c}C</H2>
-                <H2 style={{color:"#fff"}}>{clima.current.temp_f}F</H2>
+                <H2 style={{color:"#fff"}}>{clima.current.temp_c}°C</H2>
+                <H2 style={{color:"#fff"}}>{clima.current.temp_f}°F</H2>
             </Card>
 
-            <View style={{flex:1,flexDirection:"row",alignContent:"space-between",marginLeft:8,marginRight:10}}>
-                <Card style={{flex:1,height:90,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
+            <View style={{flex:1,flexDirection:"row",height:height*0.19,alignContent:"space-between",marginLeft:8,marginRight:10}}>
+                <Card style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
                     <H2 style={{color:"#fff"}}>Minima</H2>
                     <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.mintemp_c}°C</H3>
                     <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.mintemp_f}°F</H3>
                 </Card>
-                <Card style={{flex:1,height:90,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
+                <Card style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
                     <H2 style={{color:"#fff"}}>Maxima</H2>
                     <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.maxtemp_c}°C</H3>
                     <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.maxtemp_f}°F</H3>
                 </Card>
             </View>
-            <View style={{flex:1,flexDirection:"row",alignContent:"space-between",marginLeft:8,marginRight:10}}>
-            <Card style={{flex:1,height:90,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
+            <View style={{flex:1,flexDirection:"row",height:height*0.19,alignContent:"space-between",marginLeft:8,marginRight:10}}>
+            <Card style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
                     <H2 style={{color:"#fff"}}>Lluvia</H2>
                     <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.daily_chance_of_rain}%</H3>
                 </Card>
-                <Card style={{flex:1,height:90,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
+                <Card style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
                     <H2 style={{color:"#fff"}}>Humedad</H2>
                     <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.avghumidity}%</H3>
                 </Card>
