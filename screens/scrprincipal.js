@@ -31,8 +31,8 @@ const ScrPrincipal=({route,navigation})=>{
     const [error, setError] = useState(false);
     const [search,setSearch]=useState("");
     let city=null;
-    const inputref= useRef(null);
-    console.log(route.params);
+
+    //console.log(route.params);
     
     if(!route.params){
         city="Villanueva";
@@ -86,10 +86,10 @@ const ScrPrincipal=({route,navigation})=>{
     <Container style={styles.Container}>
         <Header searchBar rounded style={styles.header}  >
             <Item style={styles.addc}> 
-             <Icon name="add-circle"/>
+             <Icon name="add-circle" style={{color:"#fff"}} onPress={()=> navigation.navigate("Info",{city})}/>
             </Item>
          <Item style={styles.buscar}>
-             <Input placeholder="Buscar" ref={inputref} value={search} onChangeText={setSearch}  style={{color:"#fff",marginLeft:15}} placeholderTextColor="#fff"/>
+             <Input placeholder="Buscar" value={search} onChangeText={setSearch}  style={{color:"#fff",marginLeft:15}} placeholderTextColor="#fff"/>
              <Button icon onPress={() =>  search?(Keyboard.dismiss(),navigation.navigate('busqueda', {search}),setSearch("")):alert("Ingrese una Ciudad")}  style={{backgroundColor:"#232425",height:39,borderRadius:50}}>
                 <Icon name="search" color='#fff'/>
              </Button>
@@ -114,19 +114,19 @@ const ScrPrincipal=({route,navigation})=>{
             <View style={{flex:1,flexDirection:"row",alignContent:"space-between",marginLeft:8,marginRight:10}}>
                 <Card style={{flex:1,height:90,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
                     <H2 style={{color:"#fff"}}>Minima</H2>
-                    <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.mintemp_c}C</H3>
-                    <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.mintemp_f}F</H3>
+                    <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.mintemp_c}°C</H3>
+                    <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.mintemp_f}°F</H3>
                 </Card>
                 <Card style={{flex:1,height:90,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
                     <H2 style={{color:"#fff"}}>Maxima</H2>
-                    <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.maxtemp_c}C</H3>
-                    <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.maxtemp_f}F</H3>
+                    <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.maxtemp_c}°C</H3>
+                    <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.maxtemp_f}°F</H3>
                 </Card>
             </View>
             <View style={{flex:1,flexDirection:"row",alignContent:"space-between",marginLeft:8,marginRight:10}}>
             <Card style={{flex:1,height:90,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
                     <H2 style={{color:"#fff"}}>Lluvia</H2>
-                    <Text style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.daily_chance_of_rain}%</Text>
+                    <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.daily_chance_of_rain}%</H3>
                 </Card>
                 <Card style={{flex:1,height:90,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
                     <H2 style={{color:"#fff"}}>Humedad</H2>
@@ -171,12 +171,7 @@ const styles = StyleSheet.create({
         color:"#fff",
         textAlign:"center",
     },
-    cuadros:{
-        flexWrap:"wrap",
-        flex:1,
-        width:width*15,
-        height:height*0.5
-    },
+    
 
 });
 
