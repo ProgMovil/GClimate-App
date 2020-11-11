@@ -76,7 +76,7 @@ const ScrBusqueda=({ route , navigation })=>{
                 <Card style={{height:70,width:width*0.9,backgroundColor:"#232425",justifyContent:"center"}}>
                   <CardItem style={{backgroundColor:"#232425",}}>
                     <Body>
-                      <H3 style={{color:"#fff"}}>{item.name}</H3>
+                      <H3 style={{color:"#fff",fontFamily:"Roboto"}}>{item.name}</H3>
                     </Body>
                   </CardItem>
                 </Card>

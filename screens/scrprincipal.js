@@ -121,6 +121,7 @@ const ScrPrincipal=({route,navigation})=>{
             <View style={styles.contA}>
                 <Card style={styles.tempActual}>
                     <Text style={styles.tempActualText}>{clima.current.temp_c}°C</Text>
+                    <Text style={{fontSize:30,color:"#fff"}}>|</Text>
                     <Text style={styles.tempActualText}>{clima.current.temp_f}°F</Text>
                 </Card>
 
@@ -232,11 +233,19 @@ const styles = StyleSheet.create({
         fontSize:width*0.1,
         color:"#fff",
         textAlign:"center",
+        marginTop:height*-0.03,
+        textShadowColor:'#000',
+        textShadowOffset:{width: 1, height: 1},
+        textShadowRadius:1,
     },
     ciudadSubt:{
         fontFamily:"Roboto",
         color:"#fff",
         textAlign:"center",
+        textShadowColor:'#fff',
+        textShadowOffset:{width: 0.5, height: 0.5},
+        textShadowRadius:10,
+        
     },
     climaIcon:{
         height:75,
@@ -261,7 +270,7 @@ const styles = StyleSheet.create({
     tempActual:{
         flex:1,
         flexDirection:"row",
-        height:height*0.13,
+        height:height*0.12,
         width:width*0.94,
         backgroundColor:"#232425",
         justifyContent:"space-around",
@@ -271,7 +280,7 @@ const styles = StyleSheet.create({
     },
     tempActualText:{
         color:"#fff",
-        fontSize:40,
+        fontSize:35,
     },
     contB:{
         flex:1,

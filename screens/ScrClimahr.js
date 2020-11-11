@@ -15,7 +15,8 @@ import {
     Card,
     H3,
     CardItem,
-    Body
+    Body,
+    Image
 
 } from "native-base";
 import backend from "../api/backend";
@@ -93,7 +94,7 @@ const ScrInfoexten=({route,navigation})=>{
                   <CardItem style={{backgroundColor:"#232425",}}>
                     <Body>
                         {horadi(hour.time)}
-                     <Text style={{color:"#fff",fontSize:22}}>{hora[1]}{`\t`}{`\t`}{hour.temp_c}°C{`\t`}{`\t`}{hour.temp_f}°F </Text>
+                     <H1 style={{color:"#fff",fontSize:25, fontFamily:"Roboto",}}>{hora[1]}{`\t`}{`\t`}{hour.temp_c}°C{`\t`}{`\t`}{hour.temp_f}°F </H1>
                     </Body>
                   </CardItem>
                 </Card>
@@ -146,7 +147,7 @@ const styles = StyleSheet.create({
         width:width*15,
         height:height*0.5
     },
-
+    
 });
 
 export default ScrInfoexten;

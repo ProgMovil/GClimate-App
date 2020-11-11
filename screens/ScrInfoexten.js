@@ -75,18 +75,18 @@ const ScrInfoexten=({route,navigation})=>{
 
     return( 
         <Container style={styles.Container}>
-            <Card style={styles.ciudadCard}>
-                <View style = {styles.backgroundImage}>
+            <Card style={{height:height*0.25,marginTop:0,backgroundColor:"#232425",justifyContent:"center",borderColor:"#000"}}>
+            <View style = {styles.backgroundImage}>
                     <Image source={require("../icons/wallp3.jpg")} resizeMode="cover" style = {styles.ciudadImg}/>
                 </View>
-                <View style={styles.ciudad}>
-                    <Icon name="arrow-back" style={styles.arrowBack} onPress={() => navigation.navigate('Principal')}/>
-                    <View style={styles.ciudadText}>
-                        <Image style={styles.climaIcon} source={{uri: don2}}/>
-                        <Text style={styles.ciudadTitle}> {clima.location.name}, {clima.location.region}</Text>
-                        <Text style={styles.ciudadSubt}>{clima.current.condition.text}</Text>
-                    </View>
+                <Icon name="arrow-back" style={styles.arrowBack} onPress={() => navigation.navigate('Principal')}/>
+             <View style={styles.ciudadText}>
+                 <Image style={styles.climaIcon} source={{uri: don2}}/>
+                <H1 style={styles.h1}> {clima.location.name},{clima.location.region}</H1>
+                <Text style={{color:"#fff",textAlign:"center",textShadowColor:'#fff',textShadowOffset:{width: 0.5, height: 0.5},textShadowRadius:10,}}>{clima.current.condition.text}</Text>
                 </View>
+                
+
             </Card>
 
             <Card style={{height:height*0.07,backgroundColor:"#232425",justifyContent:"center",marginTop:5,borderLeftWidth:0,borderRightWidth:0, borderTopWidth:0.5,borderbottomWidth:0.5}}>
@@ -150,7 +150,11 @@ const styles = StyleSheet.create({
     h1:{
         color:"#fff",
         textAlign:"center",
-        marginTop:25,
+        marginTop:height*-0.03,
+        textShadowColor:'#000',
+        textShadowOffset:{width: 1, height: 1},
+        textShadowRadius:1,
+        
     },
     cuadros:{
         flexWrap:"wrap",
@@ -176,16 +180,16 @@ const styles = StyleSheet.create({
         alignItems:"center",
         justifyContent:"center",
         flexDirection:"column",
-        marginTop:height*0.055,
+        marginTop:height*-0.05,
     },
     arrowBackButton:{
         backgroundColor:"#444",
     },
     arrowBack:{
-        marginLeft:15,
-        marginTop:height*-0.11,
         color:"#fff",
         width:20,
+        marginLeft:15,
+        marginTop:10
     },
     ciudad:{
         alignItems:"stretch",
@@ -221,6 +225,7 @@ const styles = StyleSheet.create({
     climaIcon:{
         height:75,
         width:75,
+        justifyContent:"center"
     },
 
 });
