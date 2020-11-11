@@ -77,7 +77,7 @@ const ScrPrincipal=({route,navigation})=>{
     if (!clima) {
         return (
             <View style={{flex:1,justifyContent:"center",backgroundColor:"#000"}}>
-             <Spinner color="#fff"/>
+                <Spinner color="#fff"/>
             </View>
         )
     }
@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
         justifyContent:"space-around",
         alignItems:"center",
         margin:10,
-        borderColor:"#232425",
+        borderColor:"#fff",
     },
     tempActualText:{
         color:"#fff",
@@ -283,7 +283,7 @@ const styles = StyleSheet.create({
     },
     dataCard1:{
         flex:1,
-        borderColor:"#232425",
+        borderColor:"#fff",
         justifyContent:"center",
         alignItems:"center",
         backgroundColor:"#232425",
@@ -292,7 +292,7 @@ const styles = StyleSheet.create({
     },
     dataCard2:{
         flex:1,
-        borderColor:"#232425",
+        borderColor:"#fff",
         justifyContent:"center",
         alignItems:"center",
         backgroundColor:"#232425",
