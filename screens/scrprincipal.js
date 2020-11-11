@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { StyleSheet, Text, Dimensions,FlatList, Keyboard } from "react-native";
+import { StyleSheet, Text, Dimensions,FlatList, Keyboard,Image} from "react-native";
 import {
     Container,
     Header,
@@ -77,61 +77,75 @@ const ScrPrincipal=({route,navigation})=>{
     if (!clima) {
         return (
             <View style={{flex:1,justifyContent:"center",backgroundColor:"#000"}}>
-             <Spinner color="#fff"  />
+             <Spinner color="#fff"/>
             </View>
         )
     }
+    let don2 = `https:${clima.current.condition.icon}`;
+
+
     //console.log(clima.forecast.forecastday[0].day.mintemp_c);
   return( 
     <Container style={styles.Container}>
-        <Header searchBar rounded style={styles.header}  >
-            <Item style={styles.addc}> 
-             <Icon name="add-circle" style={{color:"#fff"}} onPress={()=> navigation.navigate("Info",{city})}/>
+        <Header searchBar rounded style={styles.header}>
+            <Item style={styles.addc}>
+                <Button style={styles.buttonMore} onPress={()=> navigation.navigate("Info",{city})}>
+                    <Image source={require("../icons/clima2.png")} style={styles.imageIconStyle}/>
+                </Button>
             </Item>
-         <Item style={styles.buscar}>
-             <Input placeholder="Buscar" value={search} onChangeText={setSearch}  style={{color:"#fff",marginLeft:15}} placeholderTextColor="#fff"/>
-             <Button icon onPress={() =>  search?(Keyboard.dismiss(),navigation.navigate('busqueda', {search}),setSearch("")):alert("Ingrese una Ciudad")}  style={{backgroundColor:"#232425",height:39,borderRadius:50}}>
-                <Icon name="search" color='#fff'/>
-             </Button>
-         </Item>
+            <Item style={styles.buscar}>
+                <Input placeholder="Buscar" value={search} onChangeText={setSearch} style={{color:"#fff",marginLeft:15}} placeholderTextColor="#fff"/>
+                <Button icon onPress={() =>  search?(Keyboard.dismiss(),navigation.navigate('busqueda', {search}),setSearch("")):alert("Ingrese una Ciudad")}  style={{backgroundColor:"#232425",height:39,borderRadius:50}}>
+                    <Icon name="search" color='#fff'/>
+                </Button>
+            </Item>
         </Header>
-        <Content style={styles.Content} >
-
-            <Card style={{height:height*0.25,backgroundColor:"#232425",justifyContent:"center",width:width+2,marginLeft:-1,borderColor:"#232425"}}>
-                <H1 style={styles.h1}> {clima.location.name},{clima.location.region}</H1>
-                <Text style={styles.h1}>{clima.current.condition.text}</Text>
+        <Content style={styles.Cont} >
+            
+            <Card style={styles.ciudad}>
+                <View style={styles.ciudadCont}>
+                    <View style = {styles.backgroundImage}>
+                        <Image source={require("../icons/17041-4k.jpg")} resizeMode="cover" style = {styles.ciudadImg}/>
+                    </View>
+                    <View style = {styles.overlay}>
+                        <Image style={styles.climaIcon} source={{uri: don2}}/>
+                        <Text style={styles.ciudadTitle}> {clima.location.name}, {clima.location.region}</Text>
+                        <Text style={styles.ciudadSubt}>{clima.current.condition.text}</Text>
+                    </View>
+                </View>
             </Card>
 
-            <Card style={{height:height*0.1,backgroundColor:"#232425",justifyContent:"center",marginTop:10,width:width+3,marginLeft:-1, borderTopWidth:0.5,borderbottomWidth:0.5}}>
-                <H2 style={{color:"#fff",textAlign:"center"}}>Clima Actual</H2>
+            <Card style={styles.climaActual}>
+                <Text style={{color:"#fff",textAlign:"center",fontSize:31,fontFamily:"Roboto"}}>Clima Actual</Text>
             </Card>
+            <View style={styles.contA}>
+                <Card style={styles.tempActual}>
+                    <Text style={styles.tempActualText}>{clima.current.temp_c}°C</Text>
+                    <Text style={styles.tempActualText}>{clima.current.temp_f}°F</Text>
+                </Card>
 
-            <Card style={{flex:1, flexDirection:"row",height:height*0.1,width:width*0.94,backgroundColor:"#232425",justifyContent:"space-around",alignItems:"center",margin:10,marginLeft:10}}>
-                <H2 style={{color:"#fff"}}>{clima.current.temp_c}°C</H2>
-                <H2 style={{color:"#fff"}}>{clima.current.temp_f}°F</H2>
-            </Card>
-
-            <View style={{flex:1,flexDirection:"row",height:height*0.19,alignContent:"space-between",marginLeft:8,marginRight:10}}>
-                <Card style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
-                    <H2 style={{color:"#fff"}}>Minima</H2>
-                    <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.mintemp_c}°C</H3>
-                    <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.mintemp_f}°F</H3>
-                </Card>
-                <Card style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
-                    <H2 style={{color:"#fff"}}>Maxima</H2>
-                    <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.maxtemp_c}°C</H3>
-                    <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.maxtemp_f}°F</H3>
-                </Card>
-            </View>
-            <View style={{flex:1,flexDirection:"row",height:height*0.19,alignContent:"space-between",marginLeft:8,marginRight:10}}>
-            <Card style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
-                    <H2 style={{color:"#fff"}}>Lluvia</H2>
-                    <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.daily_chance_of_rain}%</H3>
-                </Card>
-                <Card style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#232425"}}>
-                    <H2 style={{color:"#fff"}}>Humedad</H2>
-                    <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.avghumidity}%</H3>
-                </Card>
+                <View style={styles.contB}>
+                    <Card style={styles.dataCard1}>
+                        <H2 style={{color:"#fff",fontWeight:"bold",fontFamily:"Roboto"}}>Minima</H2>
+                        <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.mintemp_c}°C</H3>
+                        <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.mintemp_f}°F</H3>
+                    </Card>
+                    <Card style={styles.dataCard2}>
+                        <H2 style={{color:"#fff",fontWeight:"bold",fontFamily:"Roboto"}}>Maxima</H2>
+                        <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.maxtemp_c}°C</H3>
+                        <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.maxtemp_f}°F</H3>
+                    </Card>
+                </View>
+                <View style={styles.contB}>
+                    <Card style={styles.dataCard1}>
+                        <H2 style={{color:"#fff",fontWeight:"bold",fontFamily:"Roboto"}}>Lluvia</H2>
+                        <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.daily_chance_of_rain}%</H3>
+                    </Card>
+                    <Card style={styles.dataCard2}>
+                        <H2 style={{color:"#fff",fontWeight:"bold",fontFamily:"Roboto"}}>Humedad</H2>
+                        <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.avghumidity}%</H3>
+                    </Card>
+                </View>
             </View>
 
         </Content>
@@ -143,36 +157,146 @@ const ScrPrincipal=({route,navigation})=>{
 const styles = StyleSheet.create({
     Container:{
         flex:1,
-        backgroundColor:"#000",
-        
+        backgroundColor:"#000", 
     },
     Text:{
         color:"#fff",
     },
     header:{
         backgroundColor:"#000",
-
     },
     buscar:{
-        
         width:15,
         borderRadius:50,
         backgroundColor:"#232425",
-        
+        marginLeft:10,
+    },
+    backWall:{
+        height:height,
+        width:width,
     },
     addc:{
         maxWidth:width*0.11,
         backgroundColor:"#000",
+        marginLeft:-2,
     },
-    Content:{
-        backgroundColor:"#000",    
+    buttonMore:{
+        flex:1,
+        alignItems:"center",
+        justifyContent:"center",
+        height:height*0.054,
+        backgroundColor:"#000",
+        borderRadius:10,
+        marginLeft:width*0.001,
     },
-    h1:{
+    imageIconStyle:{
+        maxWidth:width*0.09,
+        maxHeight:height*0.05,
+        resizeMode : "stretch",
+    },
+    ciudad:{
+        height:height*0.25,
+        width:width+2,
+        backgroundColor:"#232425",
+        justifyContent:"center",
+        borderColor:"#fff",
+        marginTop:0,
+        marginLeft:-1,
+        borderColor:"#232425",
+    },
+    ciudadCont:{
+        flex: 1,
+        alignItems:"center",
+        justifyContent:"center",
+    },
+    overlay:{
+        flex:1,
+        alignItems:"center",
+        justifyContent:"center",
+        flexDirection:"column",
+    },
+    backgroundImage:{
+        position:"absolute",
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+    },
+    ciudadImg:{
+        height:height*0.25,
+        width:width+2,
+    },
+    ciudadTitle:{
+        fontFamily:"Roboto",
+        fontSize:width*0.1,
         color:"#fff",
         textAlign:"center",
     },
-    
-
+    ciudadSubt:{
+        fontFamily:"Roboto",
+        color:"#fff",
+        textAlign:"center",
+    },
+    climaIcon:{
+        height:75,
+        width:75,
+    },
+    climaActual:{
+        height:height*0.1,
+        backgroundColor:"#232425",
+        justifyContent:"center",
+        marginTop:5,
+        marginLeft:-2,
+        borderLeftWidth:0,
+        borderRightWidth:0,
+        borderTopWidth:0.5,
+    },
+    contA:{
+        flex:1,
+        alignItems:"center",
+        justifyContent:"center",
+        flexDirection:"column",
+    },
+    tempActual:{
+        flex:1,
+        flexDirection:"row",
+        height:height*0.13,
+        width:width*0.94,
+        backgroundColor:"#232425",
+        justifyContent:"space-around",
+        alignItems:"center",
+        margin:10,
+        borderColor:"#232425",
+    },
+    tempActualText:{
+        color:"#fff",
+        fontSize:40,
+    },
+    contB:{
+        flex:1,
+        flexDirection:"row",
+        alignContent:"space-between",
+        width:width*0.94,
+        height:height*0.178,
+        borderColor:"#000",
+    },
+    dataCard1:{
+        flex:1,
+        borderColor:"#232425",
+        justifyContent:"center",
+        alignItems:"center",
+        backgroundColor:"#232425",
+        marginBottom:height*0.005,
+        marginRight:7,
+    },
+    dataCard2:{
+        flex:1,
+        borderColor:"#232425",
+        justifyContent:"center",
+        alignItems:"center",
+        backgroundColor:"#232425",
+        marginBottom:height*0.005,
+    },
 });
 
 export default ScrPrincipal;
