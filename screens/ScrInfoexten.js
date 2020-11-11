@@ -66,8 +66,8 @@ const ScrInfoexten=({route,navigation})=>{
 
     if (!clima) {
         return (
-            <View style={{flex:1,justifyContent:"center",backgroundColor:"#000"}}>
-             <Spinner color="#fff"  />
+            <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#555"}}>
+                <Image source={require("../icons/clima.png")} style = {{height:200,width:200}}/>
             </View>
         )
     }
@@ -76,37 +76,35 @@ const ScrInfoexten=({route,navigation})=>{
     return( 
         <Container style={styles.Container}>
             <Card style={{height:height*0.25,marginTop:0,backgroundColor:"#232425",justifyContent:"center",borderColor:"#000"}}>
-            <View style = {styles.backgroundImage}>
+                <View style = {styles.backgroundImage}>
                     <Image source={require("../icons/wallp3.jpg")} resizeMode="cover" style = {styles.ciudadImg}/>
                 </View>
                 <Icon name="arrow-back" style={styles.arrowBack} onPress={() => navigation.navigate('Principal')}/>
-             <View style={styles.ciudadText}>
-                 <Image style={styles.climaIcon} source={{uri: don2}}/>
-                <H1 style={styles.h1}> {clima.location.name},{clima.location.region}</H1>
-                <Text style={{color:"#fff",textAlign:"center",textShadowColor:'#fff',textShadowOffset:{width: 0.5, height: 0.5},textShadowRadius:10,}}>{clima.current.condition.text}</Text>
-                </View>
-                
-
+                <View style={styles.ciudadText}>
+                    <Image style={styles.climaIcon} source={{uri: don2}}/>
+                    <Text style={styles.ciudadTitle}> {clima.location.name},{clima.location.region}</Text>
+                    <Text style={styles.ciudadSubt}>{clima.current.condition.text}</Text>
+                </View> 
             </Card>
 
-            <Card style={{height:height*0.07,backgroundColor:"#232425",justifyContent:"center",marginTop:5,borderLeftWidth:0,borderRightWidth:0, borderTopWidth:0.5,borderbottomWidth:0.5}}>
-                <H2 style={{color:"#fff",textAlign:"center"}}>Clima Detalles</H2>
+            <Card style={styles.climaDetalle}>
+                <Text style={styles.climaDetalleText}>Clima Detalles</Text>
             </Card>
 
-            <Card style={{flex:1,flexWrap:"wrap",alignContent:"center",height:height*0.50,backgroundColor:"#232425",marginTop:10}}>
-                <View style={{marginTop:20,marginLeft:10,width:width*0.40}}>
-                    <Text style={{color:"#fff",fontSize:15,width:140,textAlign:"center"}}>Sensación Termica: {`\n`}{clima.current.feelslike_c}°C{`\n`}{clima.current.feelslike_f}°F{`\n`}</Text>
-                    <Text style={{color:"#fff",fontSize:15,width:140,textAlign:"center"}}>Direccion de Viento: {`\n`}{clima.current.wind_dir}{`\n`}</Text>
-                    <Text style={{color:"#fff",fontSize:15,width:140,textAlign:"center"}}>Velocidad de Viento: {`\n`}{clima.current.wind_kph}kph{`\n`}</Text>
-                    <Text style={{color:"#fff",fontSize:15,width:140,textAlign:"center"}}>Precipitación: {`\n`}{clima.current.precip_mm}mm{`\n`}</Text>
-                    <Text style={{color:"#fff",fontSize:15,width:140,textAlign:"center"}}>Amanecer: {`\n`}{clima.forecast.forecastday[0].astro.sunrise}{`\n`}</Text>   
+            <Card style={styles.contInfo}>
+                <View style={styles.contInfoDetalle}>
+                    <Text style={styles.infoDetalles}>Sensación Termica: {`\n`}{clima.current.feelslike_c}°C{`\n`}{clima.current.feelslike_f}°F{`\n`}</Text>
+                    <Text style={styles.infoDetalles}>Direccion de Viento: {`\n`}{clima.current.wind_dir}{`\n`}</Text>
+                    <Text style={styles.infoDetalles}>Velocidad de Viento: {`\n`}{clima.current.wind_kph}km/h{`\n`}</Text>
+                    <Text style={styles.infoDetalles}>Precipitación: {`\n`}{clima.current.precip_mm}mm{`\n`}</Text>
+                    <Text style={styles.infoDetalles}>Amanecer: {`\n`}{clima.forecast.forecastday[0].astro.sunrise}{`\n`}</Text>   
                 </View>
-                <View style={{marginTop:20,marginLeft:10,width:width*0.40}}>
-                    <Text style={{color:"#fff",fontSize:15,width:140,textAlign:"center"}}>Iluminación de Luna: {`\n`}{clima.forecast.forecastday[0].astro.moon_illumination}%{`\n`}{`\n`}</Text>
-                    <Text style={{color:"#fff",fontSize:15,width:140,textAlign:"center"}}>Presión: {`\n`}{clima.current.pressure_mb}pa{`\n`}</Text>
-                    <Text style={{color:"#fff",fontSize:15,width:140,textAlign:"center"}}>Visibilidad: {`\n`}{clima.current.vis_km}km{`\n`}</Text>
-                    <Text style={{color:"#fff",fontSize:15,width:140,textAlign:"center"}}>Indice UV: {`\n`}{clima.current.uv}{`\n`}</Text>
-                    <Text style={{color:"#fff",fontSize:15,width:140,textAlign:"center"}}>Artadecer: {`\n`}{clima.forecast.forecastday[0].astro.sunset}{`\n`}</Text>   
+                <View style={styles.contInfoDetalle}>
+                    <Text style={styles.infoDetalles}>Iluminación de Luna: {`\n`}{clima.forecast.forecastday[0].astro.moon_illumination}%{`\n`}{`\n`}</Text>
+                    <Text style={styles.infoDetalles}>Presión: {`\n`}{clima.current.pressure_mb}pa{`\n`}</Text>
+                    <Text style={styles.infoDetalles}>Visibilidad: {`\n`}{clima.current.vis_km}km{`\n`}</Text>
+                    <Text style={styles.infoDetalles}>Indice UV: {`\n`}{clima.current.uv}{`\n`}</Text>
+                    <Text style={styles.infoDetalles}>Artadecer: {`\n`}{clima.forecast.forecastday[0].astro.sunset}{`\n`}</Text>   
                 </View>
             </Card>
             
@@ -123,22 +121,18 @@ const styles = StyleSheet.create({
     Container:{
         flex:1,
         backgroundColor:"#000",
-        paddingTop:0,
-        
+        paddingTop:0,  
     },
     Text:{
         color:"#fff",
     },
     header:{
         backgroundColor:"#000",
-
     },
     buscar:{
-        
         width:15,
         borderRadius:50,
         backgroundColor:"#232425",
-        
     },
     addc:{
         maxWidth:width*0.11,
@@ -154,7 +148,6 @@ const styles = StyleSheet.create({
         textShadowColor:'#000',
         textShadowOffset:{width: 1, height: 1},
         textShadowRadius:1,
-        
     },
     cuadros:{
         flexWrap:"wrap",
@@ -165,7 +158,8 @@ const styles = StyleSheet.create({
     ciudadCard:{
         height:height*0.25,
         width:width+2,
-        marginTop:0,
+        marginTop:-2,
+        marginLeft:-2,
         backgroundColor:"#232425",
         justifyContent:"center",
         borderColor:"#000",
@@ -216,18 +210,68 @@ const styles = StyleSheet.create({
         fontSize:width*0.1,
         color:"#fff",
         textAlign:"center",
+        marginTop:height*-0.03,
     },
     ciudadSubt:{
         fontFamily:"Roboto",
         color:"#fff",
         textAlign:"center",
+        color:"#fff",
+        textShadowColor:'#fff',
+        textShadowOffset:{width: 0.5, height: 0.5},
+        textShadowRadius:10,
     },
     climaIcon:{
+        marginBottom:15,
         height:75,
         width:75,
         justifyContent:"center"
     },
-
+    climaDetalle:{
+        fontFamily:"Roboto",
+        height:height*0.1,
+        backgroundColor:"#232425",
+        justifyContent:"center",
+        marginTop:1,
+        marginBottom:1,
+        marginLeft:-2,
+        marginRight:-2,
+    },
+    climaDetalleText:{
+        color:"#fff",
+        textAlign:"center",
+        fontFamily:"Roboto",
+        fontSize:height*0.04,
+    },
+    contInfo:{
+        flex:1,
+        flexWrap:"wrap",
+        alignContent:"center",
+        justifyContent:"space-evenly",
+        height:height*0.50,
+        backgroundColor:"#232425",
+        marginTop:5,
+        marginBottom:1,
+    },
+    contInfoDetalle:{
+        marginTop:height*0.048,
+        alignItems:"center",
+        width:width*0.45,
+    },
+    infoDetalles:{
+        height:height*0.1,
+        width:width*0.4,
+        fontFamily:"Roboto",
+        color:"#fff",
+        fontSize:15,
+        textAlign:"center",
+    },
+    climaXHora:{
+        backgroundColor:"#232425",
+        height:height*0.05,
+        justifyContent:"center",
+        alignItems:"center",
+    },
 });
 
 export default ScrInfoexten;

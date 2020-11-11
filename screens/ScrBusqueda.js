@@ -16,22 +16,18 @@ import {
     CardItem,
     Body,
     H3
-
 } from "native-base";
 import backend from "../api/backend";
 import getEnvVars from "../enviroment";
 import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 
 const {apiKey,apiHost}= getEnvVars();
-
 const { width, height } = Dimensions.get("window");
 
 const ScrBusqueda=({ route , navigation })=>{
     const {search}=route.params;
     const[city,setcity]=useState(null);
-    const [error, setError] = useState(false);
-
-   
+    const [error, setError] = useState(false);   
     const getcity = async ()=>{
         try
         {
@@ -44,8 +40,6 @@ const ScrBusqueda=({ route , navigation })=>{
                     }
             });
             setcity(response.data);
-            
-            
         }
         catch(error)
         {
@@ -57,37 +51,60 @@ const ScrBusqueda=({ route , navigation })=>{
         getcity();
     },[]);
     if (!city) {
-        return (
-            <View style={{flex:1,justifyContent:"center",backgroundColor:"#000"}}>
-             <Spinner color="#fff"  />
-            </View>
-        )
+      return (
+        <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#555"}}>
+          <Image source={require("../icons/clima.png")} style = {{height:200,width:200}}/>
+        </View>
+      )
     }
     return(
-        <Container>
+      <Container>
         <FlatList
-        data={city}
-        keyExtractor={(item) => item.id}
-        ListEmptyComponent={<Text>¡No hay Ciudades!</Text>}
-        renderItem={({ item }) => {
-          return (
-            <View style={{backgroundColor:"#000",alignItems:"center"}}>
-              <TouchableOpacity onPress={() => navigation.navigate('Principal', { params:{id:item.name}})}>
-                <Card style={{height:70,width:width*0.9,backgroundColor:"#232425",justifyContent:"center"}}>
-                  <CardItem style={{backgroundColor:"#232425",}}>
-                    <Body>
-                      <H3 style={{color:"#fff",fontFamily:"Roboto"}}>{item.name}</H3>
-                    </Body>
-                  </CardItem>
-                </Card>
-              </TouchableOpacity>
-          </View>
-          )
-        }}
-      />
-        </Container>
-        
+          data={city}
+          keyExtractor={(item) => item.id}
+          ListEmptyComponent={<View style = {styles.error}><Text style = {styles.errorText}>¡No hay Ciudades!</Text></View>}
+          renderItem={({ item }) => {
+            return (
+              <View style={{backgroundColor:"#000",alignItems:"center"}}>
+                <TouchableOpacity onPress={() => navigation.navigate('Principal', { params:{id:item.name}})}>
+                  <Card style={styles.cards}>
+                    <CardItem style={styles.cardItems}>
+                      <Body>
+                        <H3 style={{color:"#ddd"}}>{item.name}</H3>
+                      </Body>
+                    </CardItem>
+                  </Card>
+                </TouchableOpacity>
+            </View>
+            )
+          }}
+        />
+      </Container>
     )
 }
 
+const styles = StyleSheet.create({
+  error:{
+    backgroundColor:"#232425",
+    width:width,
+    height:height*0.9,
+    alignItems:"center",
+    justifyContent:"center",
+  },
+  errorText:{
+    color:"#ccc",
+    fontSize:40,
+  },
+  cards:{
+    height:height*0.1,
+    width:width+5,
+    backgroundColor:"#232425",
+    justifyContent:"center",
+    marginVertical:5,
+  },
+  cardItems:{
+    backgroundColor:"#232425",
+    borderWidth:0.5,
+  },
+})
 export default ScrBusqueda;

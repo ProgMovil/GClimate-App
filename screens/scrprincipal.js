@@ -14,15 +14,12 @@ import {
     Button,
     Card,
     H3
-
 } from "native-base";
 import backend from "../api/backend";
 import getEnvVars from "../enviroment";
 
 const {apiKey,apiHost}= getEnvVars();
-
 const { width, height } = Dimensions.get("window");
-
 
 //PantallaPrincipal
 const ScrPrincipal=({route,navigation})=>{
@@ -31,8 +28,6 @@ const ScrPrincipal=({route,navigation})=>{
     const [error, setError] = useState(false);
     const [search,setSearch]=useState("");
     let city=null;
-
-    //console.log(route.params);
     
     if(!route.params){
         city="Villanueva";
@@ -44,7 +39,6 @@ const ScrPrincipal=({route,navigation})=>{
     const getclima = async ()=>{
         try
         {
-            
             const response= await backend.get(`/forecast.json?q=${city}&lang=es`,{
                 headers:
                     {
@@ -54,8 +48,6 @@ const ScrPrincipal=({route,navigation})=>{
                     }
             });
             setclima(response.data);
-            
-            
         }
         catch(error)
         {
@@ -71,20 +63,14 @@ const ScrPrincipal=({route,navigation})=>{
     },[city]);
   
     //Busqueda Error
-    
-
-
     if (!clima) {
         return (
-            <View style={{flex:1,justifyContent:"center",backgroundColor:"#000"}}>
-                <Spinner color="#fff"/>
+            <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#555"}}>
+                <Image source={require("../icons/clima.png")} style = {{height:200,width:200}}/>
             </View>
         )
     }
     let don2 = `https:${clima.current.condition.icon}`;
-
-
-    //console.log(clima.forecast.forecastday[0].day.mintemp_c);
   return( 
     <Container style={styles.Container}>
         <Header searchBar rounded style={styles.header}>
@@ -121,7 +107,7 @@ const ScrPrincipal=({route,navigation})=>{
             <View style={styles.contA}>
                 <Card style={styles.tempActual}>
                     <Text style={styles.tempActualText}>{clima.current.temp_c}°C</Text>
-                    <Text style={{fontSize:30,color:"#fff"}}>|</Text>
+                    <Text style={styles.divi}>|</Text>
                     <Text style={styles.tempActualText}>{clima.current.temp_f}°F</Text>
                 </Card>
 
@@ -264,7 +250,7 @@ const styles = StyleSheet.create({
     contA:{
         flex:1,
         alignItems:"center",
-        justifyContent:"center",
+        justifyContent:"space-evenly",
         flexDirection:"column",
     },
     tempActual:{
@@ -273,19 +259,22 @@ const styles = StyleSheet.create({
         height:height*0.12,
         width:width*0.94,
         backgroundColor:"#232425",
-        justifyContent:"space-around",
+        justifyContent:"space-evenly",
         alignItems:"center",
-        margin:10,
         borderColor:"#fff",
     },
     tempActualText:{
         color:"#fff",
         fontSize:35,
     },
+    divi:{
+        fontSize:40,
+        color:"#fff",
+    },
     contB:{
         flex:1,
         flexDirection:"row",
-        alignContent:"space-between",
+        alignContent:"space-around",
         width:width*0.94,
         height:height*0.178,
         borderColor:"#000",

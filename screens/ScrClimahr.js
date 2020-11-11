@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, Dimensions,FlatList, Keyboard,ScrollView } from "react-native";
+import { StyleSheet, Text, Dimensions,ScrollView,Image } from "react-native";
 import {
     Container,
     Header,
@@ -15,17 +15,13 @@ import {
     Card,
     H3,
     CardItem,
-    Body,
-    Image
-
+    Body
 } from "native-base";
 import backend from "../api/backend";
 import getEnvVars from "../enviroment";
 
 const {apiKey,apiHost}= getEnvVars();
-
 const { width, height } = Dimensions.get("window");
-
 
 //PantallaPrincipal
 const ScrInfoexten=({route,navigation})=>{
@@ -35,8 +31,6 @@ const ScrInfoexten=({route,navigation})=>{
     const [search,setSearch]=useState("");
     let city=null;
 
-    //console.log(route.params);
-    
     if(!route.params){
         city="Villanueva";
     }else{
@@ -47,7 +41,6 @@ const ScrInfoexten=({route,navigation})=>{
     const getclima = async ()=>{
         try
         {
-            
             const response= await backend.get(`/forecast.json?q=${city}&lang=es`,{
                 headers:
                     {
@@ -57,8 +50,6 @@ const ScrInfoexten=({route,navigation})=>{
                     }
             });
             setclima(response.data);
-            
-            
         }
         catch(error)
         {
@@ -70,13 +61,12 @@ const ScrInfoexten=({route,navigation})=>{
     //Clima obtener
     useEffect(()=>{
         getclima();
-        
     },[]);
 
     if (!clima) {
         return (
-            <View style={{flex:1,justifyContent:"center",backgroundColor:"#000"}}>
-             <Spinner color="#fff"  />
+            <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#555"}}>
+                <Image source={require("../icons/clima.png")} style = {{height:200,width:200}}/>
             </View>
         )
     }
@@ -88,22 +78,25 @@ const ScrInfoexten=({route,navigation})=>{
     <Container style={styles.Container}>
         <ScrollView>
         {
-          clima.forecast.forecastday[0].hour.map((hour) => (
-            <View style={{backgroundColor:"#000",alignItems:"center"}}>
-                <Card style={{height:70,width:width*0.9,backgroundColor:"#232425",justifyContent:"center"}}>
-                  <CardItem style={{backgroundColor:"#232425",}}>
-                    <Body>
-                        {horadi(hour.time)}
-                     <H1 style={{color:"#fff",fontSize:25, fontFamily:"Roboto",}}>{hora[1]}{`\t`}{`\t`}{hour.temp_c}°C{`\t`}{`\t`}{hour.temp_f}°F </H1>
-                    </Body>
-                  </CardItem>
-                </Card>
-          </View>
-          ))
+            clima.forecast.forecastday[0].hour.map((hour) => (
+                <View style={styles.cardCont}>
+                    <Card style={styles.cards}>
+                        <CardItem style={styles.cardItems}>
+                            <Body style = {styles.cardBody}>
+                                {horadi(hour.time)}
+                                <Text style={styles.cardTexth}>{hora[1]}</Text>
+                                <View style = {styles.tempCont}>
+                                    <Text style={styles.cardTextc}>{hour.temp_c}°C</Text>
+                                    <Text style={styles.divi}>|</Text>
+                                    <Text style={styles.cardTextf}>{hour.temp_f}°F</Text>
+                                </View>
+                            </Body>
+                        </CardItem>
+                    </Card>
+                </View>
+            ))
         }
         </ScrollView>
-           
-          
     </Container>
 
   );
@@ -114,40 +107,64 @@ const styles = StyleSheet.create({
         flex:1,
         backgroundColor:"#000",
         paddingTop:0,
-        
-    },
-    Text:{
-        color:"#fff",
     },
     header:{
         backgroundColor:"#000",
-
     },
     buscar:{
-        
         width:15,
         borderRadius:50,
         backgroundColor:"#232425",
-        
     },
     addc:{
         maxWidth:width*0.11,
         backgroundColor:"#000",
     },
     Content:{
-        backgroundColor:"#000",    
+        backgroundColor:"#000",
     },
-    h1:{
+    cardCont:{
+        backgroundColor:"#000",
+        alignItems:"center",
+    },
+    cards:{
+        height:height*0.12,
+        width:width+1,
+        backgroundColor:"#232425",
+        justifyContent:"center",
+        marginBottom:7,
+        marginTop:3,
+    },
+    cardItems:{
+        backgroundColor:"#232425",
+        width:width,
+    },
+    cardBody:{
+        justifyContent:"space-between",
+        flexDirection:"row",
+    },
+    cardTexth:{
         color:"#fff",
-        textAlign:"center",
+        fontSize:25,
+        marginTop:height*0.012,
     },
-    cuadros:{
-        flexWrap:"wrap",
-        flex:1,
-        width:width*15,
-        height:height*0.5
+    tempCont:{
+        justifyContent:"space-evenly",
+        flexDirection:"row",
     },
-    
+    cardTextc:{
+        color:"#bbb",
+        fontSize:35,
+    },
+    divi:{
+        fontSize:35,
+        color:"#fff",
+        marginHorizontal:height*0.01,
+    },
+    cardTextf:{
+        color:"#bbb",
+        fontSize:35,
+    },
 });
 
 export default ScrInfoexten;
