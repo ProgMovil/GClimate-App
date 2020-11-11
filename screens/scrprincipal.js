@@ -105,7 +105,7 @@ const ScrPrincipal=({route,navigation})=>{
             <Card style={styles.ciudad}>
                 <View style={styles.ciudadCont}>
                     <View style = {styles.backgroundImage}>
-                        <Image source={require("../icons/17041-4k.jpg")} resizeMode="cover" style = {styles.ciudadImg}/>
+                        <Image source={require("../icons/wallp3.jpg")} resizeMode="cover" style = {styles.ciudadImg}/>
                     </View>
                     <View style = {styles.overlay}>
                         <Image style={styles.climaIcon} source={{uri: don2}}/>
@@ -203,6 +203,7 @@ const styles = StyleSheet.create({
         marginTop:0,
         marginLeft:-1,
         borderColor:"#232425",
+        borderColor:"#000",
     },
     ciudadCont:{
         flex: 1,
