@@ -81,7 +81,7 @@ const ScrInfoexten=({route,navigation})=>{
             clima.forecast.forecastday[0].hour.map((hour) => (
                 <View style={styles.cardCont}>
                     <Card style={styles.cards}>
-                        <CardItem style={styles.cardItems}>
+                        <CardItem style={styles.cardItems}>   
                             <Body style = {styles.cardBody}>
                                 {horadi(hour.time)}
                                 <Text style={styles.cardTexth}>{hora[1]}</Text>
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     },
     cards:{
         height:height*0.12,
-        width:width+1,
+        width:width*0.92,
         backgroundColor:"#232425",
         justifyContent:"center",
         marginBottom:7,
@@ -137,15 +137,18 @@ const styles = StyleSheet.create({
     },
     cardItems:{
         backgroundColor:"#232425",
-        width:width,
+      
     },
     cardBody:{
         justifyContent:"space-between",
         flexDirection:"row",
+        alignContent:"center",
+        alignItems:"center",
+        backgroundColor:"#232425",
     },
     cardTexth:{
         color:"#fff",
-        fontSize:25,
+        fontSize:30,
         marginTop:height*0.012,
     },
     tempCont:{
@@ -154,17 +157,18 @@ const styles = StyleSheet.create({
     },
     cardTextc:{
         color:"#bbb",
-        fontSize:35,
+        fontSize:30,
     },
     divi:{
-        fontSize:35,
+        fontSize:30,
         color:"#fff",
-        marginHorizontal:height*0.01,
+        marginHorizontal:height*0.02,
     },
     cardTextf:{
         color:"#bbb",
-        fontSize:35,
+        fontSize:30,
     },
+    
 });
 
 export default ScrInfoexten;

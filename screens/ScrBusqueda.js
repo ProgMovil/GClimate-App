@@ -65,7 +65,7 @@ const ScrBusqueda=({ route , navigation })=>{
           ListEmptyComponent={<View style = {styles.error}><Text style = {styles.errorText}>¡No hay Ciudades!</Text></View>}
           renderItem={({ item }) => {
             return (
-              <View style={{backgroundColor:"#000",alignItems:"center"}}>
+              <View style={{backgroundColor:"#000",borderColor:"#fff",alignItems:"center"}}>
                 <TouchableOpacity onPress={() => navigation.navigate('Principal', { params:{id:item.name}})}>
                   <Card style={styles.cards}>
                     <CardItem style={styles.cardItems}>
@@ -97,14 +97,15 @@ const styles = StyleSheet.create({
   },
   cards:{
     height:height*0.1,
-    width:width+5,
+    width:width*0.92,
     backgroundColor:"#232425",
     justifyContent:"center",
     marginVertical:5,
+    borderColor:"#fff",
   },
   cardItems:{
     backgroundColor:"#232425",
-    borderWidth:0.5,
+    
   },
 })
 export default ScrBusqueda;

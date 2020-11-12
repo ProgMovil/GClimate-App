@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { cloneElement, useEffect, useRef, useState } from "react";
 import { StyleSheet, Text, Dimensions,FlatList, Keyboard,Image} from "react-native";
 import {
     Container,
@@ -113,12 +113,12 @@ const ScrPrincipal=({route,navigation})=>{
 
                 <View style={styles.contB}>
                     <Card style={styles.dataCard1}>
-                        <H2 style={{color:"#fff",fontWeight:"bold",fontFamily:"Roboto"}}>Minima</H2>
+                        <H2 style={{color:"#fff",fontWeight:"bold",fontFamily:"Roboto"}}>Mínima</H2>
                         <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.mintemp_c}°C</H3>
                         <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.mintemp_f}°F</H3>
                     </Card>
                     <Card style={styles.dataCard2}>
-                        <H2 style={{color:"#fff",fontWeight:"bold",fontFamily:"Roboto"}}>Maxima</H2>
+                        <H2 style={{color:"#fff",fontWeight:"bold",fontFamily:"Roboto"}}>Máxima</H2>
                         <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.maxtemp_c}°C</H3>
                         <H3 style={{color:"#fff"}}>{clima.forecast.forecastday[0].day.maxtemp_f}°F</H3>
                     </Card>
@@ -216,10 +216,10 @@ const styles = StyleSheet.create({
     },
     ciudadTitle:{
         fontFamily:"Roboto",
-        fontSize:width*0.1,
+        fontSize:25,
         color:"#fff",
         textAlign:"center",
-        marginTop:height*-0.03,
+        marginTop:height*-0.015,
         textShadowColor:'#000',
         textShadowOffset:{width: 1, height: 1},
         textShadowRadius:1,
@@ -227,6 +227,7 @@ const styles = StyleSheet.create({
     ciudadSubt:{
         fontFamily:"Roboto",
         color:"#fff",
+        fontSize:16,
         textAlign:"center",
         textShadowColor:'#fff',
         textShadowOffset:{width: 0.5, height: 0.5},
@@ -256,20 +257,28 @@ const styles = StyleSheet.create({
     tempActual:{
         flex:1,
         flexDirection:"row",
+        justifyContent:"center",
+        alignItems:"center",
         height:height*0.12,
         width:width*0.94,
-        backgroundColor:"#232425",
-        justifyContent:"space-evenly",
-        alignItems:"center",
-        borderColor:"#fff",
+        backgroundColor:"#232425"
+        
     },
     tempActualText:{
+        flex:1,
+        justifyContent:"center",
+        textAlign:"center",
         color:"#fff",
-        fontSize:35,
+        fontSize:30,
+        backgroundColor:"#232425",
     },
+    
     divi:{
+        flex:1/3,
+        textAlign:"center",
         fontSize:40,
         color:"#fff",
+        backgroundColor:"#232425",
     },
     contB:{
         flex:1,

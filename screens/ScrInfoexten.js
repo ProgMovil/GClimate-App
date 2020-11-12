@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     },
     ciudadTitle:{
         fontFamily:"Roboto",
-        fontSize:width*0.1,
+        fontSize:25,
         color:"#fff",
         textAlign:"center",
         marginTop:height*-0.03,
@@ -217,6 +217,7 @@ const styles = StyleSheet.create({
         color:"#fff",
         textAlign:"center",
         color:"#fff",
+        fontSize:16,
         textShadowColor:'#fff',
         textShadowOffset:{width: 0.5, height: 0.5},
         textShadowRadius:10,
