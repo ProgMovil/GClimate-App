@@ -78,17 +78,17 @@ const ScrInfoexten=({route,navigation})=>{
     <Container style={styles.Container}>
         <ScrollView>
         {
-            clima.forecast.forecastday[0].hour.map((hour) => (
-                <View style={styles.cardCont}>
+            clima.forecast.forecastday[0].hour.map((hour,index) => (
+                <View style={styles.cardCont }key={index}>
                     <Card style={styles.cards}>
                         <CardItem style={styles.cardItems}>   
-                            <Body style = {styles.cardBody}>
+                            <Body style = {styles.cardBody} >
                                 {horadi(hour.time)}
-                                <Text style={styles.cardTexth}>{hora[1]}</Text>
-                                <View style = {styles.tempCont}>
-                                    <Text style={styles.cardTextc}>{hour.temp_c}°C</Text>
+                                   <Text style={styles.cardTexth}>{hora[1]}</Text>
+                                  <View style = {styles.tempCont} >
+                                    <Text style={styles.cardTextc} >{hour.temp_c}°C</Text>
                                     <Text style={styles.divi}>|</Text>
-                                    <Text style={styles.cardTextf}>{hour.temp_f}°F</Text>
+                                    <Text style={styles.cardTextf} >{hour.temp_f}°F</Text>
                                 </View>
                             </Body>
                         </CardItem>

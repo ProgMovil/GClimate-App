@@ -61,7 +61,7 @@ const ScrBusqueda=({ route , navigation })=>{
       <Container>
         <FlatList
           data={city}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.id.toString()}
           ListEmptyComponent={<View style = {styles.error}><Text style = {styles.errorText}>¡No hay Ciudades!</Text></View>}
           renderItem={({ item }) => {
             return (
