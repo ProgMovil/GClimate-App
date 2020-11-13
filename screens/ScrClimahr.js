@@ -65,8 +65,8 @@ const ScrInfoexten=({route,navigation})=>{
 
     if (!clima) {
         return (
-            <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#555"}}>
-                <Image source={require("../icons/clima.png")} style = {{height:200,width:200}}/>
+            <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#000"}}>
+                <Image source={require("../icons/clima2.png")} style = {{height:200,width:200}}/>
             </View>
         )
     }
@@ -140,31 +140,43 @@ const styles = StyleSheet.create({
       
     },
     cardBody:{
-        justifyContent:"space-between",
+        justifyContent:"center",
         flexDirection:"row",
         alignContent:"center",
         alignItems:"center",
         backgroundColor:"#232425",
     },
     cardTexth:{
+        flex:1/3,
         color:"#fff",
         fontSize:30,
-        marginTop:height*0.012,
+        marginRight:width*0.1
     },
     tempCont:{
-        justifyContent:"space-evenly",
+        flex:1,
+        justifyContent:"center",
         flexDirection:"row",
+        backgroundColor:"#232425"
     },
     cardTextc:{
+        flex:1,
+        justifyContent:"center",
+        textAlign:"center",
         color:"#bbb",
         fontSize:30,
     },
     divi:{
+        flex:1/5,
+        justifyContent:"center",
+        textAlign:"center",
         fontSize:30,
         color:"#fff",
-        marginHorizontal:height*0.02,
+       
     },
     cardTextf:{
+        flex:1,
+        justifyContent:"center",
+        textAlign:"center",
         color:"#bbb",
         fontSize:30,
     },

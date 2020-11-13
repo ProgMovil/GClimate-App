@@ -66,8 +66,8 @@ const ScrInfoexten=({route,navigation})=>{
 
     if (!clima) {
         return (
-            <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#555"}}>
-                <Image source={require("../icons/clima.png")} style = {{height:200,width:200}}/>
+            <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#000"}}>
+                <Image source={require("../icons/clima2.png")} style = {{height:200,width:200}}/>
             </View>
         )
     }

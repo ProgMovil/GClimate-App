@@ -52,8 +52,8 @@ const ScrBusqueda=({ route , navigation })=>{
     },[]);
     if (!city) {
       return (
-        <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#555"}}>
-          <Image source={require("../icons/clima.png")} style = {{height:200,width:200}}/>
+        <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#000"}}>
+          <Image source={require("../icons/clima2.png")} style = {{height:200,width:200}}/>
         </View>
       )
     }
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     fontSize:40,
   },
   cards:{
-    height:height*0.1,
+    height:height*0.12,
     width:width*0.92,
     backgroundColor:"#232425",
     justifyContent:"center",

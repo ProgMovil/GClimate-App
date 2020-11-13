@@ -65,15 +65,15 @@ const ScrPrincipal=({route,navigation})=>{
     //Busqueda Error
     if (!clima) {
         return (
-            <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#555"}}>
-                <Image source={require("../icons/clima.png")} style = {{height:200,width:200}}/>
+            <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#000"}}>
+                <Image source={require("../icons/clima2.png")} style = {{height:200,width:200}}/>
             </View>
         )
     }
     let don2 = `https:${clima.current.condition.icon}`;
   return( 
     <Container style={styles.Container}>
-        <Header searchBar rounded style={styles.header}>
+        <Header searchBar rounded style={styles.header} androidStatusBarColor="#000">
             <Item style={styles.addc}>
                 <Button style={styles.buttonMore} onPress={()=> navigation.navigate("Info",{city})}>
                     <Image source={require("../icons/clima2.png")} style={styles.imageIconStyle}/>
