@@ -274,7 +274,6 @@ const styles = StyleSheet.create({
     },
     
     divi:{
-        flex:1/3,
         textAlign:"center",
         fontSize:40,
         color:"#fff",

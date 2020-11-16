@@ -147,7 +147,6 @@ const styles = StyleSheet.create({
         backgroundColor:"#232425",
     },
     cardTexth:{
-        flex:1/3,
         color:"#fff",
         fontSize:30,
         marginRight:width*0.1
@@ -159,22 +158,19 @@ const styles = StyleSheet.create({
         backgroundColor:"#232425"
     },
     cardTextc:{
-        flex:1,
         justifyContent:"center",
         textAlign:"center",
         color:"#bbb",
         fontSize:30,
     },
     divi:{
-        flex:1/5,
         justifyContent:"center",
         textAlign:"center",
         fontSize:30,
         color:"#fff",
-       
+       marginHorizontal: width*0.01,
     },
     cardTextf:{
-        flex:1,
         justifyContent:"center",
         textAlign:"center",
         color:"#bbb",

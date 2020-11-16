@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import ScrPrincipal from './screens/ScrPrincipal';
+import ScrPrincipal from './screens/scrprincipal';
 import ScrBusqueda from './screens/ScrBusqueda';
 import ScrClimahr from './screens/ScrClimahr';
 import ScrInfoexten from './screens/ScrInfoexten';
