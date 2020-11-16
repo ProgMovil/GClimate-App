@@ -74,6 +74,7 @@ const ScrInfoexten=({route,navigation})=>{
     const horadi = (data)=>{
         hora=data.split(" ")
     }
+
   return( 
     <Container style={styles.Container}>
         <ScrollView>
@@ -84,8 +85,8 @@ const ScrInfoexten=({route,navigation})=>{
                         <CardItem style={styles.cardItems}>   
                             <Body style = {styles.cardBody} >
                                 {horadi(hour.time)}
-                                   <Text style={styles.cardTexth}>{hora[1]}</Text>
-                                  <View style = {styles.tempCont} >
+                                <Text style={styles.cardTexth}>{hora[1]}</Text>
+                                <View style = {styles.tempCont} >
                                     <Text style={styles.cardTextc} >{hour.temp_c}°C</Text>
                                     <Text style={styles.divi}>|</Text>
                                     <Text style={styles.cardTextf} >{hour.temp_f}°F</Text>
@@ -100,7 +101,8 @@ const ScrInfoexten=({route,navigation})=>{
     </Container>
 
   );
-}; 
+};
+
 //Termina ScrInfoExten
 const styles = StyleSheet.create({
     Container:{
@@ -137,44 +139,45 @@ const styles = StyleSheet.create({
     },
     cardItems:{
         backgroundColor:"#232425",
-      
     },
     cardBody:{
-        justifyContent:"center",
+        flex:1,
         flexDirection:"row",
-        alignContent:"center",
-        alignItems:"center",
+        justifyContent:"center",
         backgroundColor:"#232425",
     },
     cardTexth:{
         color:"#fff",
         fontSize:30,
-        marginRight:width*0.1
+        marginRight:width*0.06,
     },
     tempCont:{
         flex:1,
-        justifyContent:"center",
         flexDirection:"row",
-        backgroundColor:"#232425"
+        backgroundColor:"#232425",
+        width:width*0.3,
     },
     cardTextc:{
+        flex:1,
         justifyContent:"center",
         textAlign:"center",
         color:"#bbb",
-        fontSize:30,
+        fontSize:28,
     },
     divi:{
+        flex:1/5,
         justifyContent:"center",
         textAlign:"center",
-        fontSize:30,
+        fontSize:25,
         color:"#fff",
-       marginHorizontal: width*0.01,
+        marginHorizontal: width*0.02,
     },
     cardTextf:{
+        flex:1,
         justifyContent:"center",
         textAlign:"center",
         color:"#bbb",
-        fontSize:30,
+        fontSize:28,
     },
     
 });
