@@ -46,7 +46,7 @@ const ScrBusqueda=({ route , navigation })=>{
             setError(true);
         }
     }
-
+    //Obtener clima
     useEffect(()=>{
         getcity();
     },[]);

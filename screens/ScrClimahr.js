@@ -2,18 +2,8 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, Dimensions,ScrollView,Image } from "react-native";
 import {
     Container,
-    Header,
-    Item,
-    Input,
-    Icon,
-    Content,
-    Spinner,
-    H1,
     View,
-    H2,
-    Button,
     Card,
-    H3,
     CardItem,
     Body
 } from "native-base";
@@ -58,7 +48,7 @@ const ScrInfoexten=({route,navigation})=>{
     }
     //Busqueda Clima
     
-    //Clima obtener
+    //Obtener Clima
     useEffect(()=>{
         getclima();
     },[]);

@@ -2,23 +2,14 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, Dimensions,Image} from "react-native";
 import {
     Container,
-    Header,
-    Item,
-    Input,
-    Icon,
-    Content,
-    Spinner,
-    H1,
+    Icon,  
     View,
-    H2,
-    Button,
     Card,
-    H3
 } from "native-base";
 import backend from "../api/backend";
 import getEnvVars from "../enviroment";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { color } from "react-native-reanimated";
+
 
 const {apiKey,apiHost}= getEnvVars();
 const { width, height } = Dimensions.get("window");
@@ -56,9 +47,8 @@ const ScrInfoexten=({route,navigation})=>{
             setError(true);
         }
     }
-    //Busqueda Clima
     
-    //Clima obtener
+    //Obtener Clima
     useEffect(()=>{
         getclima();
         
@@ -71,7 +61,7 @@ const ScrInfoexten=({route,navigation})=>{
             </View>
         )
     }
-    let don2 = `https:${clima.current.condition.icon}`;
+    let climaicono = `https:${clima.current.condition.icon}`;
 
     return( 
         <Container style={styles.Container}>
@@ -81,7 +71,7 @@ const ScrInfoexten=({route,navigation})=>{
                 </View>
                 <Icon name="arrow-back" style={styles.arrowBack} onPress={() => navigation.navigate('Principal')}/>
                 <View style={styles.ciudadText}>
-                    <Image style={styles.climaIcon} source={{uri: don2}}/>
+                    <Image style={styles.climaIcon} source={{uri: climaicono}}/>
                     <Text style={styles.ciudadTitle}> {clima.location.name},{clima.location.region}</Text>
                     <Text style={styles.ciudadSubt}>{clima.current.condition.text}</Text>
                 </View> 

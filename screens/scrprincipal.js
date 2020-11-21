@@ -1,5 +1,5 @@
-import React, { cloneElement, useEffect, useRef, useState } from "react";
-import { StyleSheet, Text, Dimensions,FlatList, Keyboard,Image} from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, Dimensions, Keyboard,Image} from "react-native";
 import {
     Container,
     Header,
@@ -7,8 +7,6 @@ import {
     Input,
     Icon,
     Content,
-    Spinner,
-    H1,
     View,
     H2,
     Button,
@@ -35,7 +33,7 @@ const ScrPrincipal=({route,navigation})=>{
         city=route.params.params.id;
     }
 
-    //Gets
+
     const getclima = async ()=>{
         try
         {
@@ -54,15 +52,13 @@ const ScrPrincipal=({route,navigation})=>{
             setError(true);
         }
     }
-    //Busqueda Clima
-    
-    //Clima obtener
+
+    //obtener Clima
     useEffect(()=>{
         getclima();
         
     },[city]);
   
-    //Busqueda Error
     if (!clima) {
         return (
             <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#000"}}>
@@ -70,7 +66,7 @@ const ScrPrincipal=({route,navigation})=>{
             </View>
         )
     }
-    let don2 = `https:${clima.current.condition.icon}`;
+    let climaicono = `https:${clima.current.condition.icon}`;
   return( 
     <Container style={styles.Container}>
         <Header searchBar rounded style={styles.header} androidStatusBarColor="#000">
@@ -94,7 +90,7 @@ const ScrPrincipal=({route,navigation})=>{
                         <Image source={require("../icons/wallp3.jpg")} resizeMode="cover" style = {styles.ciudadImg}/>
                     </View>
                     <View style = {styles.overlay}>
-                        <Image style={styles.climaIcon} source={{uri: don2}}/>
+                        <Image style={styles.climaIcon} source={{uri: climaicono}}/>
                         <Text style={styles.ciudadTitle}> {clima.location.name}, {clima.location.region}</Text>
                         <Text style={styles.ciudadSubt}>{clima.current.condition.text}</Text>
                     </View>
@@ -145,9 +141,6 @@ const styles = StyleSheet.create({
     Container:{
         flex:1,
         backgroundColor:"#000", 
-    },
-    Text:{
-        color:"#fff",
     },
     header:{
         backgroundColor:"#000",

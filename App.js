@@ -1,14 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet} from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import ScrPrincipal from './screens/scrprincipal';
 import ScrBusqueda from './screens/ScrBusqueda';
 import ScrClimahr from './screens/ScrClimahr';
 import ScrInfoexten from './screens/ScrInfoexten';
-import { roundToNearestPixel } from 'react-native/Libraries/Utilities/PixelRatio';
-import { Title } from 'native-base';
+
 
 
 const Stack = createStackNavigator();
