@@ -11,5 +11,5 @@ web-build/
 
 # macOS
 .DS_Store
-
-enviroment.js
+##App
+*enviroment.js
