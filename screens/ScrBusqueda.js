@@ -24,10 +24,14 @@ import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 const {apiKey,apiHost}= getEnvVars();
 const { width, height } = Dimensions.get("window");
 
+//Pantalla de Búsqueda de Ciudades
 const ScrBusqueda=({ route , navigation })=>{
+    //Variables
     const {search}=route.params;
     const[city,setcity]=useState(null);
     const [error, setError] = useState(false);   
+
+    //Gets
     const getcity = async ()=>{
         try
         {
@@ -50,6 +54,7 @@ const ScrBusqueda=({ route , navigation })=>{
     useEffect(()=>{
         getcity();
     },[]);
+
     if (!city) {
       return (
         <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#000"}}>
@@ -57,6 +62,8 @@ const ScrBusqueda=({ route , navigation })=>{
         </View>
       )
     }
+
+    //Pantalla de resultados de búsqueda
     return(
       <Container>
         <FlatList
@@ -82,6 +89,7 @@ const ScrBusqueda=({ route , navigation })=>{
       </Container>
     )
 }
+//Termina ScrBusqueda
 
 const styles = StyleSheet.create({
   error:{

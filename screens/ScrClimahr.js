@@ -13,7 +13,7 @@ import getEnvVars from "../enviroment";
 const {apiKey,apiHost}= getEnvVars();
 const { width, height } = Dimensions.get("window");
 
-//PantallaPrincipal
+//Pantalla de Clima po por Hora
 const ScrInfoexten=({route,navigation})=>{
     //Variables
     const[clima,setclima]=useState(null);
@@ -65,6 +65,7 @@ const ScrInfoexten=({route,navigation})=>{
         hora=data.split(" ")
     }
 
+    //Pantalla de clima por hora
   return( 
     <Container style={styles.Container}>
         <ScrollView>
@@ -92,8 +93,8 @@ const ScrInfoexten=({route,navigation})=>{
 
   );
 };
-
 //Termina ScrInfoExten
+
 const styles = StyleSheet.create({
     Container:{
         flex:1,

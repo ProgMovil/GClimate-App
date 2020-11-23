@@ -19,7 +19,7 @@ import getEnvVars from "../enviroment";
 const {apiKey,apiHost}= getEnvVars();
 const { width, height } = Dimensions.get("window");
 
-//PantallaPrincipal
+//Pantalla Principal
 const ScrPrincipal=({route,navigation})=>{
     //Variables
     const[clima,setclima]=useState(null);
@@ -33,7 +33,7 @@ const ScrPrincipal=({route,navigation})=>{
         city=route.params.params.id;
     }
 
-
+    //Gets
     const getclima = async ()=>{
         try
         {
@@ -53,7 +53,7 @@ const ScrPrincipal=({route,navigation})=>{
         }
     }
 
-    //obtener Clima
+    //Obtener olima
     useEffect(()=>{
         getclima();
         
@@ -66,7 +66,11 @@ const ScrPrincipal=({route,navigation})=>{
             </View>
         )
     }
+    
+    //Obtener icono
     let climaicono = `https:${clima.current.condition.icon}`;
+
+    //Pantalla principal
   return( 
     <Container style={styles.Container}>
         <Header searchBar rounded style={styles.header} androidStatusBarColor="#000">
@@ -137,6 +141,8 @@ const ScrPrincipal=({route,navigation})=>{
   );
 }; 
 //Termina ScrPrincipal
+
+
 const styles = StyleSheet.create({
     Container:{
         flex:1,

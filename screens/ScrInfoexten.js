@@ -14,7 +14,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 const {apiKey,apiHost}= getEnvVars();
 const { width, height } = Dimensions.get("window");
 
-//PantallaPrincipal
+//Pantalla de Información Extendida
 const ScrInfoexten=({route,navigation})=>{
     //Variables
     const[clima,setclima]=useState(null);
@@ -61,8 +61,11 @@ const ScrInfoexten=({route,navigation})=>{
             </View>
         )
     }
-    let climaicono = `https:${clima.current.condition.icon}`;
 
+    //Obtener icono
+    let climaicono = `https:${clima.current.condition.icon}`;
+    
+    //Pantalla de información extendida
     return( 
         <Container style={styles.Container}>
             <Card style={{height:height*0.25,marginTop:0,backgroundColor:"#232425",justifyContent:"center",borderColor:"#000"}}>
@@ -107,6 +110,7 @@ const ScrInfoexten=({route,navigation})=>{
     );
 }; 
 //Termina ScrInfoExten
+
 const styles = StyleSheet.create({
     Container:{
         flex:1,
