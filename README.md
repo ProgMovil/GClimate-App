@@ -1,4 +1,4 @@
-# GClimate
+![Icono de la app](https://github.com/ProgMovil/WeatherApp/blob/Develop/icons/clima.png)
 
 ### Descripción
 ¡Obtener tu pronóstico del clima nunca fue más fácil!
@@ -10,3 +10,9 @@ Información detallada sobre las condiciones meteorológicas, hora del amanecer,
 ### Funcionamiento de la app
 
 ![Funcionamiento de al app](https://github.com/ProgMovil/WeatherApp/blob/Develop/icons/Funcionamiento%20de%20la%20app.png)
+
+### Tecnologías Utilizadas
+* React native
+* Expo
+* NativeBase
+* Axios
